@@ -88,7 +88,7 @@ class JcrNodesWriter implements ItemWriter<ProtoNode>, ItemWriteListener {
     }
 
     private static void writeToJcr(ProtoNode nodeProto, Session session) {
-        JcrNodeDecorator jcrNode = new ProtoNodeDecorator(nodeProto).writeToJcr(session)
+        JcrNodeDecorator jcrNode = ProtoNodeDecorator.createFrom(nodeProto).writeToJcr(session)
         jcrNode.setLastModified()
         // This will processed all mandatory child nodes only
         if(nodeProto.mandatoryChildNodeList && nodeProto.mandatoryChildNodeList.size() > 0) {
